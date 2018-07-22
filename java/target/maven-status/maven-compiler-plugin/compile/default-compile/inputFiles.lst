@@ -1,0 +1,7 @@
+/opt/app/src/main/java/com/greglturnquist/payroll/EmployeeRepository.java
+/opt/app/src/main/java/com/greglturnquist/payroll/DatabaseLoader.java
+/opt/app/src/main/java/com/greglturnquist/payroll/ReactAndSpringDataRestApplication.java
+/opt/app/src/main/java/com/greglturnquist/payroll/HomeController.java
+/opt/app/src/main/java/com/greglturnquist/payroll/WebSocketConfiguration.java
+/opt/app/src/main/java/com/greglturnquist/payroll/EventHandler.java
+/opt/app/src/main/java/com/greglturnquist/payroll/Employee.java
