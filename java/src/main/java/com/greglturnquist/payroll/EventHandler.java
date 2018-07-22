@@ -25,6 +25,7 @@ import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
+import javax.json.Json;
 
 /**
  * @author Greg Turnquist
@@ -38,6 +39,31 @@ public class EventHandler {
 
 	private final EntityLinks entityLinks;
 
+	private final String mockData = Json.createArrayBuilder()
+		.add(Json.createObjectBuilder()
+			.add("name", "Antivirus")
+			.add("totalAssetCount", "12345")
+			.add("threatAssetCount", "12345")
+			.add("threatLevel", "0.2")
+			.add("timestamp", "2018-06-01T01:01:00")
+			.add("links", "[]"))
+		.add(Json.createObjectBuilder()
+			.add("name", "Malware")
+			.add("totalAssetCount", "12345")
+			.add("threatAssetCount", "12345")
+			.add("threatLevel", "0.2")
+			.add("timestamp", "2018-06-01T01:01:00")
+			.add("links", "[]"))
+		.add(Json.createObjectBuilder()
+			.add("name", "Firewall")
+			.add("totalAssetCount", "22345")
+			.add("threatAssetCount", "12345")
+			.add("threatLevel", "0.3")
+			.add("timestamp", "2018-06-01T01:01:00")
+			.add("links", "[]"))
+		.build()
+		.toString();
+
 	@Autowired
 	public EventHandler(SimpMessagingTemplate websocket, EntityLinks entityLinks) {
 		this.websocket = websocket;
@@ -47,7 +73,7 @@ public class EventHandler {
 	@HandleAfterCreate
 	public void newEmployee(Employee employee) {
 		this.websocket.convertAndSend(
-				MESSAGE_PREFIX + "/newEmployee", getPath(employee));
+				MESSAGE_PREFIX + "/newEmployee", mockData);
 	}
 
 	@HandleAfterDelete
