@@ -1,4 +1,4 @@
-import { addEmployee } from './action.js';
+import { fetchData } from './action.js';
 const SockJS = require('sockjs-client');
 const Stomp = require('stompjs');
 
@@ -15,6 +15,6 @@ export function register(registrations) {
 
 export const init = (store) => {
 	register([
-		{ route: '/topic/data', callback: (message) => { store.dispatch(addEmployee(message.body)) } }
+		{ route: '/topic/data', callback: (message) => { store.dispatch(fetchData(JSON.parse(message.body))) } }
 	]);
 };

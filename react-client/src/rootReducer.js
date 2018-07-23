@@ -1,11 +1,13 @@
+import { FETCH_DATA } from './action';
+
 const initialState = {
-  newestEmployeeId: null,
+  threats: [],
 }
 
 export function rootReducer(state = initialState, action) {
   switch(action.type) {
-    case 'ADD_EMPLOYEE':
-      return Object.assign(...state, { newestEmployeeId: action.id });
+    case 'FETCH_DATA':
+      return Object.assign(...state, { threats: action.id });
     default:
       return state
   }

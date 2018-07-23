@@ -7,7 +7,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import './index.css';
 import App from './App';
 import { rootReducer } from './rootReducer';
-import { addEmployee } from './action';
 import registerServiceWorker from './registerServiceWorker';
 import { init } from './websocketListener.js';
 

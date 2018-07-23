@@ -1,10 +1,10 @@
 // Action types
-const ADD_EMPLOYEE = 'ADD_EMPLOYEE';
+const FETCH_DATA = 'FETCH_DATA';
 
 // Action creator
-export function addEmployee(id) {
+export function fetchData(id) {
   return {
-    type: ADD_EMPLOYEE,
+    type: FETCH_DATA,
     id,
   }
 }
