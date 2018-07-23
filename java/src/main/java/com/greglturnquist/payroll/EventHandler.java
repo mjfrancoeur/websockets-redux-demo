@@ -19,8 +19,6 @@ import static com.greglturnquist.payroll.WebSocketConfiguration.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.core.annotation.HandleAfterCreate;
-import org.springframework.data.rest.core.annotation.HandleAfterDelete;
-import org.springframework.data.rest.core.annotation.HandleAfterSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.springframework.hateoas.EntityLinks;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -71,22 +69,11 @@ public class EventHandler {
 	}
 
 	@HandleAfterCreate
-	public void newEmployee(Employee employee) {
+	public void sendData(Employee employee) {
 		this.websocket.convertAndSend(
-				MESSAGE_PREFIX + "/newEmployee", mockData);
+				MESSAGE_PREFIX + "/data", mockData);
 	}
 
-	@HandleAfterDelete
-	public void deleteEmployee(Employee employee) {
-		this.websocket.convertAndSend(
-				MESSAGE_PREFIX + "/deleteEmployee", getPath(employee));
-	}
-
-	@HandleAfterSave
-	public void updateEmployee(Employee employee) {
-		this.websocket.convertAndSend(
-				MESSAGE_PREFIX + "/updateEmployee", getPath(employee));
-	}
 
 	/**
 	 * Take an {@link Employee} and get the URI using Spring Data REST's {@link EntityLinks}.

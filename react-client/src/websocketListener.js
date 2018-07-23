@@ -2,7 +2,7 @@ import { addEmployee } from './action.js';
 const SockJS = require('sockjs-client');
 const Stomp = require('stompjs');
 
-const socket = SockJS('http://localhost:8080/payroll');
+const socket = SockJS('http://localhost:8080/threats');
 const stompClient = Stomp.over(socket);
 
 export function register(registrations) {
@@ -15,6 +15,6 @@ export function register(registrations) {
 
 export const init = (store) => {
 	register([
-		{ route: '/topic/newEmployee', callback: (message) => { store.dispatch(addEmployee(message.body)) } }
+		{ route: '/topic/data', callback: (message) => { store.dispatch(addEmployee(message.body)) } }
 	]);
 };
